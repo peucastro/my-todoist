@@ -2,6 +2,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from todoist_api_python.api import TodoistAPI
+from scripts.delete_completed_tasks import delete_completed_tasks
 
 
 def main():
@@ -17,13 +18,7 @@ def main():
         return
 
     api = TodoistAPI(api_token)
-    try:
-        projects = api.get_projects()
-        print(f"Found {len(projects)} projects:")
-        for project in projects:
-            print(f"- {project.name}")
-    except Exception as e:
-        logging.error(f"API test failed: {e}")
+    delete_completed_tasks(api)
 
 
 if __name__ == "__main__":
