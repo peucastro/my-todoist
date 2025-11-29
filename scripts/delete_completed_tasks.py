@@ -4,8 +4,6 @@ from todoist_api_python.api import TodoistAPI
 
 def delete_completed_tasks(api: TodoistAPI):
     """Delete all completed tasks."""
-    logging.basicConfig(level=logging.WARNING, format="%(levelname)s: %(message)s")
-
     try:
         logging.info("Fetching all projects...")
         deleted_count = 0
