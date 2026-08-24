@@ -1,7 +1,10 @@
-import os
 import logging
+import os
+
 from dotenv import load_dotenv
 from todoist_api_python.api import TodoistAPI
+
+logger = logging.getLogger(__name__)
 
 
 def setup_logging():
@@ -19,6 +22,6 @@ def get_api_client() -> TodoistAPI:
     load_dotenv()
     api_token = os.getenv("TODOIST_API_TOKEN")
     if not api_token:
-        logging.error("TODOIST_API_TOKEN not found in .env file.")
+        logger.error("TODOIST_API_TOKEN not found in .env file.")
         raise ValueError("TODOIST_API_TOKEN is required")
     return TodoistAPI(api_token)
